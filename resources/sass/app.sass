@@ -1,0 +1,409 @@
+// Thrid party packages
+@import '~normalize.css/normalize.css'
+
+// Variables & mixins
+@import 'variables'
+@import 'mixins'
+
+*
+    box-sizing: border-box
+
+body
+    font-family: $font-family-base
+    font-size: 16px
+    color: $color-dark-text
+
+h1, h2, h3, h4, h5, h6
+    font-family: $font-family-title
+    font-weight: 600
+    color: $color-primary
+
+a, a:hover
+    text-decoration: none
+
+header
+    border-bottom: 1px solid lighten($color-base, 34%)
+    z-index: 999
+
+
+main
+    background-color: $color-background
+    background-image: url('/img/background.jpg')
+    background-repeat: repeat
+    padding-bottom: 4em
+    padding-top: .5em
+
+footer
+    background-color: $color-primary
+    padding-top: 1em
+    padding-bottom: 1em
+    color: $color-light-text
+    box-shadow: 0px 0px .5em $color-primary
+    .container
+        display: flex
+        flex-direction: column
+        @media only screen and (min-width: $tablet-and-up)
+            flex-direction: row
+        & > div
+            padding: 1em
+            h5
+                margin: .5em 0
+                font-weight: 500
+                font-size: 1.25em
+                color: $color-light-text
+        .footer-logo
+            @media only screen and (min-width: $tablet-and-up)
+                width: 40%
+            img
+                height: 50px
+            span
+                display: block
+        .footer-menu
+            @media only screen and (min-width: $tablet-and-up)
+                width: 30%
+            ul
+                padding: 0
+                margin: 0
+                li
+                    list-style: none
+                    padding: 0.5em 0
+                    a
+                        font-size: 1em
+                        color: $color-light-text
+
+    .footer-social
+        @media only screen and (min-width: $tablet-and-up)
+            width: 30%
+        ul
+            padding: 0
+            margin: 0
+            display: flex
+            width: 100%
+            li
+                display: block
+                a
+                    display: block
+                    margin: 1em
+                    color: $color-light-text
+
+
+.container
+    width: 100%
+    margin: auto
+    @media only screen and (min-width: $tablet-and-up)
+        width: 40em
+    @media only screen and (min-width: $laptop-and-up)
+        width: 65em
+
+.spacer
+    flex: 1
+
+.appbar
+    display: flex
+    align-items: center
+    padding: 1em
+    .brand-logo
+        img
+            height: 36px
+    .menu-activator
+        display: block
+        width: 2em
+        position: relative
+        cursor: pointer
+        @media only screen and (min-width: $laptop-and-up)
+            display: none
+        .bar
+            background-color: transparent
+            &::before, &::after
+                content: ""
+                display: block
+                background-color: $color-base
+                height: 0.2em
+                width: 100%
+                transition: 0.5s
+                border-radius: .1em
+                position: absolute
+            &::before
+                top: 6px
+            &::after
+                top: -6px
+        &.open
+            .bar
+                width: 5em
+                &::before
+                    top: 0
+                    transform: rotate(45deg)
+                &::after
+                    top: 0
+                    transform: rotate(135deg)
+    .menu-collapse
+        transition: 0.5s
+        position: absolute
+        top: 0
+        bottom: 0
+        width: 100%
+        left: -1000%
+        font-family: $font-family-title
+        background-color: $color-background
+        @media only screen and (min-width: $laptop-and-up)
+            position: static
+            background: none
+            width: auto
+        ul.menu-main
+            padding: 0
+            padding-top: 1em
+            margin: 0
+            li
+                list-style: none
+                font-size: 2em
+                padding: 0.5em
+                @media only screen and (min-width: $laptop-and-up)
+                    display: inline-block
+                    font-size: 1em
+                &:hover
+                    border-left: 2px solid $color-primary
+                    @media only screen and (min-width: $laptop-and-up)
+                        border: none
+                a
+                    color: darken($color-dark-text,20%)
+                    font-weight: 500
+                    &:hover
+                        color: $color-primary
+        ul.menu-social
+            padding: 0
+            margin: 0
+            position: fixed
+            bottom: 0
+            width: 100%
+            display: flex
+            align-items: center
+            justify-content: space-between
+            background-color: $color-primary
+            @media only screen and (min-width: $laptop-and-up)
+                display: none
+            li
+                display: inline-block
+                padding: 0.5em
+                a
+                    font-size: 2.25em
+                    color: $color-light-text
+                    margin: 0 0.5em
+                    .feather
+                        width: 1.5em
+                        height: 1.5em
+        &.open
+            position: absolute
+            top: 4.25em
+            width: 100%
+            bottom: 0
+            left: 0
+            z-index: 99999
+
+.content-header
+    height: 300px
+    margin-bottom: 2em
+    @media only screen and (min-width: $tablet-and-up)
+        height: 400px
+    &.header-home
+        margin-top: -.5em
+        background-image: url('https://via.placeholder.com/1200x300')
+        position: relative
+        background-attachment: fixed
+        background-position: center
+        background-repeat: no-repeat
+        background-size: cover
+        .quote
+            position: absolute
+            bottom: 1em
+            left: 1em
+            width: 18em
+            padding: 1.5em 1.5em 1.5em 3em
+            background-color: transparentize($color-primary, 0.1)
+            color: $color-light-text
+            border-radius: .25em
+            @media only screen and (min-width: $tablet-and-up)
+                width: 22em
+            &::before
+                    content: '\201D'
+                    font-size: 3.5em
+                    font-family: $font-family-title
+                    position: absolute
+                    top: .25em
+                    left: .25em
+            cite
+                display: block
+                font-size: 1.45em
+                font-family: $font-family-title
+                margin-bottom: .5em
+            span
+                display: block
+                text-align: right
+                font-size: 1.1em
+                margin: .25em
+    &.header
+        .container
+            height: 100%
+            display: flex
+            align-items: center
+            justify-content: center
+            background-image: url('https://via.placeholder.com/1200x300')
+            background-position: center
+            background-repeat: no-repeat
+            background-size: cover
+            h2
+                font-size: 2.5em
+                color: $color-light-text
+
+.pages-thumbnails
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-between
+    @media only screen and (min-width: $tablet-and-up)
+        flex-direction: row
+    .page-section
+        width: 100%
+        margin: 1em
+        background-color: $color-background
+        @media only screen and (min-width: $laptop-and-up)
+            width: 30%
+        .page-section-image
+            margin: 0
+            img
+                width: 100%
+                max-height: 15em
+                border-radius: .25em .25em 0 0
+        .page-section-text
+            padding: 0.5em
+            h2
+                color: $color-primary
+                margin-top: 0
+                margin-bottom: .5em
+            span
+                display: block
+                font-size: 1em
+                margin-bottom: 1em
+            .page-section-action
+                text-align: right
+                a
+                    display: inline-block
+                    border-radius: .1em
+                    font-size: 1.375em
+                    padding: .5em 1em
+                    border: 1px solid $color-primary
+                    color: $color-primary
+                    &:hover
+                        background: $color-primary
+                        color: $color-light-text
+
+.contact-content
+    display: flex
+    flex-direction: column
+    @media only screen and (min-width: $laptop-and-up)
+        flex-direction: row
+        justify-content: space-between
+    .contact-text
+        @media only screen and (min-width: $laptop-and-up)
+            width: 50%
+        div
+            background: $color-background
+            border-radius: .25em
+            padding: 1em
+            margin-bottom: 1em
+            @media only screen and (min-width: $laptop-and-up)
+                margin-right: 1em
+    .contact-form
+        padding: 1em
+        border-radius: .25em
+        background-color: tint($color-primary, 90%)
+        @media only screen and (min-width: $laptop-and-up)
+            width: 50%
+        h1
+            color: $color-primary
+            margin-top: 0
+        form
+            input[type=text], textarea
+                width: 100%
+                padding: 1em 1.25em
+                border: 1px solid $color-primary
+                border-radius: .25em
+                margin-bottom: 1em
+            textarea
+                resize: vertical
+            button[type=submit]
+                padding: 0.5em 1em
+                font-size: 1.2em
+                border-radius: .25em
+                background: $color-light-text
+                color: $color-primary
+                border: 1px solid $color-primary
+                &:hover
+                    color: $color-light-text
+                    background: $color-primary
+
+.thebook-container
+    display: flex
+    flex-direction: column-reverse
+    padding: 1em
+    background-color: $color-background
+    margin-bottom: 1em
+    @media only screen and (min-width: $tablet-and-up)
+        flex-direction: row
+    .thebook-images
+        img
+            @media only screen and (min-width: $tablet-and-up)
+                max-width: 16em
+                margin-right: 1em
+    .thebook-text
+        flex: 1
+
+.thebook-testimonials
+    padding: 1em
+    background-color: $color-background
+    h2
+        margin: .5em 0 1em 0
+    .testimonial
+        margin: .5em 0
+        .quote
+            display: block
+            font-style: italic
+            font-size: 1.25em
+            padding-left: 3.5em
+            position: relative
+            &::before
+                content: '\201D'
+                display: block
+                position: absolute
+                top: 0
+                left: .25em
+                font-family: $font-family-title
+                font-size: 3em
+                color: $color-primary
+        .author
+            text-align: right
+            img
+                border-radius: 100%
+                width: 48px
+                height: 48px
+            span
+                display: block
+                font-size: 1em
+                .fullname
+                    font-family: $font-family-title
+
+.my-history
+    display: flex
+    flex-direction: column-reverse
+    @media only screen and (min-width: $tablet-and-up)
+        flex-direction: row
+    .my-history-image
+        img
+            max-width: 16em
+            @media only screen and (min-width: $tablet-and-up)
+                margin-right: 1em
+    .my-history-text
+        flex: 1
+        background-color: $color-background
+        h2
+            margin-top: 0
+            margin-bottom: 1em
